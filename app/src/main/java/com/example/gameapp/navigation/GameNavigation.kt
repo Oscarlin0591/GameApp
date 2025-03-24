@@ -7,6 +7,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -18,6 +19,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavType
@@ -40,6 +42,7 @@ fun AppBar(
     navigateUp: () -> Unit,
     textToShare: String,
     context: Context,
+    gameViewModel: GameViewModel,
     modifier: Modifier
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -73,6 +76,11 @@ fun AppBar(
                 }) {
                     Icon(imageVector = Icons.Default.Share, contentDescription = "Share items")
                 }
+            }
+            IconButton(
+                onClick = {gameViewModel.updateColor(Color.Blue)}
+            ) {
+                Icon(Icons.Default.Settings, contentDescription = null)
             }
         }
     )

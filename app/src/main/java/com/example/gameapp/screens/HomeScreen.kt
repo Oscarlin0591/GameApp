@@ -65,6 +65,7 @@ fun HomeScreen(
                 navigateUp = {navController.navigateUp()},
                 context = LocalContext.current,
                 textToShare = "",
+                gameViewModel = gameViewModel,
                 modifier = Modifier)
         }
         ,
@@ -73,11 +74,6 @@ fun HomeScreen(
                 containerColor = MaterialTheme.colorScheme.secondary,
                 contentColor = Color.Black,
                 modifier = Modifier) {}
-        },
-        floatingActionButton = {
-            FloatingActionButton(onClick = {  gameViewModel.updateColor(Color.Blue) }) {
-                Icon(Icons.Default.Settings, contentDescription = null)
-            }
         },
         containerColor = gameViewModel.backgroundColor
     ) {

@@ -47,6 +47,7 @@ fun DetailsScreen(
                     navigateUp = { navController.navigateUp() },
                     context = LocalContext.current,
                     textToShare = it.short_description,
+                    gameViewModel = gameViewModel,
                     modifier = Modifier
                 )
             }
