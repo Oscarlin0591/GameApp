@@ -50,7 +50,8 @@ fun DetailsScreen(
                     modifier = Modifier
                 )
             }
-        }
+        },
+        containerColor = gameViewModel.backgroundColor
     ) {
 
         Column(

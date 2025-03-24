@@ -1,6 +1,10 @@
 package com.example.gameapp.model
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,6 +25,7 @@ class GameViewModel : ViewModel(){
     val _gameResult = MutableLiveData<Response<ArrayList<Games>>>()
     val gameResult : LiveData<Response<ArrayList<Games>>> = _gameResult
 
+    var backgroundColor by mutableStateOf(Color.Green)
 
     fun getData(){
     //coroutine: instance of suspendable computation. Conceptually similar to a thread (takes a block of code to run that works concuurently with the rest of the code).
@@ -38,5 +43,9 @@ class GameViewModel : ViewModel(){
                 e.message?.let{Log.d("Network error", "Failed to load data")}
             }
         }
+    }
+
+    fun updateColor(color: Color){
+        backgroundColor = color
     }
 }
