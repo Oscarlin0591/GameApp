@@ -2,6 +2,7 @@ package com.example.gameapp.screens.home
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,11 +14,15 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 //import androidx.compose.material.Scaffold
 
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -30,13 +35,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
+import com.example.gameapp.MyApp
 import com.example.gameapp.api.Games
 import com.example.gameapp.model.GameViewModel
 import com.example.gameapp.navagation.AppBar
 import com.example.gameapp.navagation.AppScreens
+import com.example.gameapp.navagation.GameNavigation
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -64,11 +73,17 @@ fun HomeScreen(
                 containerColor = MaterialTheme.colorScheme.secondary,
                 contentColor = Color.Black,
                 modifier = Modifier) {}
-        }
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = {  gameViewModel.updateColor(Color.Blue) }) {
+                Icon(Icons.Default.Settings, contentDescription = null)
+            }
+        },
+        containerColor = gameViewModel.backgroundColor
     ) {
         Column(modifier = Modifier.padding(vertical = 84.dp, horizontal = 12.dp)) {
             LazyVerticalGrid(
-                columns = GridCells.Fixed(2)
+                columns = GridCells.Fixed(2),
             ){
                 items(gameListNonNullable) {
                     // added Game row here
