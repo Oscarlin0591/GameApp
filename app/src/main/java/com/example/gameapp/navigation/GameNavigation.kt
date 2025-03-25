@@ -31,6 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.gameapp.model.GameViewModel
 import com.example.gameapp.screens.AboutScreen
+import com.example.gameapp.screens.ColorScreen
 
 import com.example.gameapp.screens.home.HomeScreen
 import com.example.gameapp.screens.details.DetailsScreen
@@ -57,7 +58,7 @@ fun AppBar(
             containerColor = MaterialTheme.colorScheme.secondary
         ),
         modifier = modifier,
-        navigationIcon = { // takes the "canNavigateBack" boolean and displays an Icon that is clickable with the navigateUp method
+        navigationIcon = {
             if (canNavigateBack) {
                 IconButton(onClick = navigateUp) {
                     Icon(
@@ -67,7 +68,7 @@ fun AppBar(
                 }
             }
         },
-        actions = { // actions that include SHARE, SETTINGS, and ABOUT.
+        actions = {
             if (textToShare.isNotEmpty()) {
                 IconButton(onClick = {
                     val intent = Intent(Intent.ACTION_SEND).apply {
@@ -81,7 +82,7 @@ fun AppBar(
                 }
             }
             IconButton( // icon and clickable to direct user to the color picker screen
-                onClick = {gameViewModel.updateColor(Color.Blue)}
+                onClick = {navController.navigate(route = AppScreens.ColorScreen.name)}
             ) {
                 Icon(Icons.Default.Settings, contentDescription = null)
             }
@@ -126,6 +127,13 @@ fun GameNavigation() {
             AboutScreen(
                 navController = navController,
                 gameViewModel
+            )
+        }
+
+        composable(AppScreens.ColorScreen.name) {
+            ColorScreen(
+                navController = navController,
+                gameViewModel = gameViewModel
             )
         }
     }
