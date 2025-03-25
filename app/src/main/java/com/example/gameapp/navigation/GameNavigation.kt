@@ -81,12 +81,12 @@ fun AppBar(
                     Icon(imageVector = Icons.Default.Share, contentDescription = "Share items")
                 }
             }
-            IconButton(
+            IconButton( // icon and clickable to direct user to the color picker screen
                 onClick = {navController.navigate(route = AppScreens.ColorScreen.name)}
             ) {
                 Icon(Icons.Default.Settings, contentDescription = null)
             }
-            IconButton(
+            IconButton( // icon and clickable to direct user to the about screen
                 onClick = {navController.navigate(route = AppScreens.AboutScreen.name)}
             ) {
                 Icon(Icons.Default.Info, contentDescription = null)
