@@ -25,7 +25,7 @@ class GameViewModel : ViewModel(){
     val _gameResult = MutableLiveData<Response<ArrayList<Games>>>()
     val gameResult : LiveData<Response<ArrayList<Games>>> = _gameResult
 
-    var backgroundColor by mutableStateOf(Color.Green)
+    var backgroundColor by mutableStateOf(Color.White)
 
     fun getData(){
     //coroutine: instance of suspendable computation. Conceptually similar to a thread (takes a block of code to run that works concuurently with the rest of the code).

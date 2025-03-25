@@ -31,6 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.gameapp.model.GameViewModel
 import com.example.gameapp.screens.AboutScreen
+import com.example.gameapp.screens.ColorScreen
 
 import com.example.gameapp.screens.home.HomeScreen
 import com.example.gameapp.screens.details.DetailsScreen
@@ -81,7 +82,7 @@ fun AppBar(
                 }
             }
             IconButton(
-                onClick = {gameViewModel.updateColor(Color.Blue)}
+                onClick = {navController.navigate(route = AppScreens.ColorScreen.name)}
             ) {
                 Icon(Icons.Default.Settings, contentDescription = null)
             }
@@ -126,6 +127,13 @@ fun GameNavigation() {
             AboutScreen(
                 navController = navController,
                 gameViewModel
+            )
+        }
+
+        composable(AppScreens.ColorScreen.name) {
+            ColorScreen(
+                navController = navController,
+                gameViewModel = gameViewModel
             )
         }
     }
