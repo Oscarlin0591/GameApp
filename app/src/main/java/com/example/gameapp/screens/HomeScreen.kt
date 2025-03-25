@@ -4,12 +4,14 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CornerSize
@@ -99,12 +101,13 @@ fun GameRow(game: Games, itemClick: (String)-> Unit = {} ) {
     Card(modifier = Modifier
         .padding(4.dp)
         .fillMaxSize(.5f)
+        .height(250.dp)
         .clickable {
             //add itemclick
             itemClick(game.title)
         },
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),) {
-        Column(modifier = Modifier.padding(5.dp)) { // each card lines items with
+        Column(modifier = Modifier.padding(5.dp), verticalArrangement = Arrangement.SpaceBetween) { // each card lines items with
             Surface(
                 modifier = Modifier
                     .padding(12.dp)
@@ -124,7 +127,7 @@ fun GameRow(game: Games, itemClick: (String)-> Unit = {} ) {
 
             Text(
                 text = game.title,
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(start=10.dp)
             )
             Text(
@@ -143,6 +146,49 @@ fun GameRow(game: Games, itemClick: (String)-> Unit = {} ) {
 
 
     }
+}
 
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@Composable
+fun HomeScreenLandscape(
+    navController: NavController, gameViewModel: GameViewModel
+)
+{
+    val gameResult = gameViewModel.gameResult.observeAsState()
+    val gameList = gameResult.value?.body()
+    val gameListNonNullable = gameList?.filterNotNull() ?: emptyList() // elvis operator returns the list else returns emptyList()
+
+    Scaffold(
+        topBar = {
+            AppBar(currentScreen = AppScreens.HomeScreen.name,
+                navController = navController,
+                navigateUp = {navController.navigateUp()},
+                context = LocalContext.current,
+                textToShare = "",
+                gameViewModel = gameViewModel,
+                modifier = Modifier)
+        }
+        ,
+        bottomBar = {
+            BottomAppBar(
+                containerColor = MaterialTheme.colorScheme.secondary,
+                contentColor = Color.Black,
+                modifier = Modifier) {}
+        },
+        containerColor = gameViewModel.backgroundColor
+    ) {
+        Column(modifier = Modifier.padding(vertical = 84.dp, horizontal = 12.dp)) {
+            LazyHorizontalGrid(
+                rows = GridCells.Fixed(2),
+            ){
+                items(gameListNonNullable) {
+                    // added Game row here
+                    GameRow(game = it) { game ->
+                        navController.navigate(route = AppScreens.DetailScreen.name + "/$game")
+                    }
+                }
+            }
+        }
+    }
 }

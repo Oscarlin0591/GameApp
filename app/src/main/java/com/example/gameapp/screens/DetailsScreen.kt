@@ -12,7 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -72,6 +74,7 @@ fun DetailsScreen(
                 withStyle(
                     style = SpanStyle(
                         color = Color.Blue,
+                        shadow = Shadow(Color.Black, Offset(1f,1f), 0.2f),
                         fontSize = 20.sp
                     )
                 ) {
@@ -82,15 +85,15 @@ fun DetailsScreen(
 
             HorizontalDivider(modifier = Modifier.padding(3.dp))
             Text(
-                text = "Director: ${gameFiltered?.get(0)?.publisher}",
+                text = "Publisher: ${gameFiltered?.get(0)?.publisher}",
                 style = MaterialTheme.typography.titleLarge
             )
             Text(
-                text = "Actors: ${gameFiltered?.get(0)?.publisher}",
+                text = "Actors: ${gameFiltered?.get(0)?.developer}",
                 style = MaterialTheme.typography.titleLarge
             )
             Text(
-                text = "Rating: ${gameFiltered?.get(0)?.developer}",
+                text = "Rating: ${gameFiltered?.get(0)?.game_url}",
                 style = MaterialTheme.typography.titleLarge
             )
 

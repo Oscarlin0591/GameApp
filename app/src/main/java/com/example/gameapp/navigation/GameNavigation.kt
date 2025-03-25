@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
@@ -29,9 +30,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.gameapp.model.GameViewModel
+import com.example.gameapp.screens.AboutScreen
 
 import com.example.gameapp.screens.home.HomeScreen
 import com.example.gameapp.screens.details.DetailsScreen
+import com.example.gameapp.screens.home.HomeScreenLandscape
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -82,7 +85,12 @@ fun AppBar(
             ) {
                 Icon(Icons.Default.Settings, contentDescription = null)
             }
-        }
+            IconButton(
+                onClick = {navController.navigate(route = AppScreens.AboutScreen.name)}
+            ) {
+                Icon(Icons.Default.Info, contentDescription = null)
+            }
+        },
     )
 }
 
@@ -100,7 +108,6 @@ fun GameNavigation() {
 
     ) {
         composable(AppScreens.HomeScreen.name) {
-
             HomeScreen(
                 navController = navController,
                 gameViewModel
@@ -112,6 +119,13 @@ fun GameNavigation() {
             DetailsScreen(
                 navController = navController, gameViewModel,
                 backStackEntry.arguments?.getString("title"),
+            )
+        }
+
+        composable(AppScreens.AboutScreen.name) {
+            AboutScreen(
+                navController = navController,
+                gameViewModel
             )
         }
     }
