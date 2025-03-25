@@ -57,7 +57,7 @@ fun AppBar(
             containerColor = MaterialTheme.colorScheme.secondary
         ),
         modifier = modifier,
-        navigationIcon = {
+        navigationIcon = { // takes the "canNavigateBack" boolean and displays an Icon that is clickable with the navigateUp method
             if (canNavigateBack) {
                 IconButton(onClick = navigateUp) {
                     Icon(
@@ -67,7 +67,7 @@ fun AppBar(
                 }
             }
         },
-        actions = {
+        actions = { // actions that include SHARE, SETTINGS, and ABOUT.
             if (textToShare.isNotEmpty()) {
                 IconButton(onClick = {
                     val intent = Intent(Intent.ACTION_SEND).apply {
@@ -80,12 +80,12 @@ fun AppBar(
                     Icon(imageVector = Icons.Default.Share, contentDescription = "Share items")
                 }
             }
-            IconButton(
+            IconButton( // icon and clickable to direct user to the color picker screen
                 onClick = {gameViewModel.updateColor(Color.Blue)}
             ) {
                 Icon(Icons.Default.Settings, contentDescription = null)
             }
-            IconButton(
+            IconButton( // icon and clickable to direct user to the about screen
                 onClick = {navController.navigate(route = AppScreens.AboutScreen.name)}
             ) {
                 Icon(Icons.Default.Info, contentDescription = null)
