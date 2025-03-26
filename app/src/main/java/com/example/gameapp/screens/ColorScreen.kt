@@ -3,11 +3,15 @@ package com.example.gameapp.screens
 import android.annotation.SuppressLint
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -18,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.gameapp.model.GameViewModel
 import com.example.gameapp.navigation.AppBar
@@ -33,7 +38,7 @@ fun ColorScreen(
     Scaffold(
         topBar = {
             AppBar(
-                currentScreen = AppScreens.AboutScreen.name,
+                currentScreen = AppScreens.ColorScreen.name,
                 navController = navController,
                 navigateUp = { navController.navigateUp() },
                 textToShare = "",
@@ -42,14 +47,23 @@ fun ColorScreen(
                 modifier = Modifier
             )
         },
+        bottomBar = { //bottom app bar for cleaner look of the app
+            BottomAppBar(
+                containerColor = MaterialTheme.colorScheme.secondary,
+                contentColor = Color.Black,
+                modifier = Modifier.windowInsetsBottomHeight(insets = WindowInsets(bottom=50.dp))
+            ) {}
+        },
         containerColor = gameViewModel.backgroundColor
     ) {
 
         Column( // column of buttons that change the background color of each screen
             horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .padding(top = 100.dp)
                 .fillMaxWidth()
+                .height(750.dp)
         ) {
             Text("Change the background color by tapping a color:", style = MaterialTheme.typography.titleLarge)
             //white button

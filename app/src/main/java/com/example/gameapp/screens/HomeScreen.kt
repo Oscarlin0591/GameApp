@@ -5,10 +5,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -67,12 +70,12 @@ fun HomeScreen(
             BottomAppBar(
                 containerColor = MaterialTheme.colorScheme.secondary,
                 contentColor = Color.Black,
-                modifier = Modifier
+                modifier = Modifier.windowInsetsBottomHeight(insets = WindowInsets(bottom=50.dp))
             ) {}
         },
         containerColor = gameViewModel.backgroundColor
     ) {
-        Column(modifier = Modifier.padding(vertical = 84.dp, horizontal = 12.dp)) {
+        Column(modifier = Modifier.padding(top=84.dp, bottom = 50.dp, start = 8.dp, end = 8.dp)) {
             LazyVerticalGrid(
                 //lazy column for all the games
                 columns = GridCells.Fixed(2),

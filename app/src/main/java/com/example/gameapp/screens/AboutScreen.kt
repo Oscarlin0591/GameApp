@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -12,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -37,6 +41,13 @@ fun AboutScreen(
                 gameViewModel = gameViewModel,
                 modifier = Modifier
             )
+        },
+        bottomBar = { //bottom app bar for cleaner look of the app
+            BottomAppBar(
+                containerColor = MaterialTheme.colorScheme.secondary,
+                contentColor = Color.Black,
+                modifier = Modifier.windowInsetsBottomHeight(insets = WindowInsets(bottom=50.dp))
+            ) {}
         },
         containerColor = gameViewModel.backgroundColor
     ) {

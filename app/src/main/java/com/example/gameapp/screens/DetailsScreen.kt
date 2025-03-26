@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.BottomAppBar
 
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -57,6 +58,13 @@ fun DetailsScreen(
                     modifier = Modifier
                 )
             }
+        },
+        bottomBar = { //bottom app bar for cleaner look of the app
+            BottomAppBar(
+                containerColor = MaterialTheme.colorScheme.secondary,
+                contentColor = Color.Black,
+                modifier = Modifier.windowInsetsBottomHeight(insets = WindowInsets(bottom=50.dp))
+            ) {}
         },
         containerColor = gameViewModel.backgroundColor
     ) {

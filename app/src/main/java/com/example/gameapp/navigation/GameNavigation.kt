@@ -30,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.gameapp.model.GameViewModel
 import com.example.gameapp.screens.AboutScreen
+import com.example.gameapp.screens.ColorScreen
 
 import com.example.gameapp.screens.HomeScreen
 import com.example.gameapp.screens.DetailsScreen
@@ -132,6 +133,12 @@ fun GameNavigation() { //navigation composable to help with navigation between s
 
         composable(AppScreens.AboutScreen.name) {
             AboutScreen(
+                navController = navController,
+                gameViewModel
+            )
+        }
+        composable(AppScreens.ColorScreen.name) {
+           ColorScreen(
                 navController = navController,
                 gameViewModel
             )
