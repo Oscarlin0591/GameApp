@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.gameapp.navagation.GameNavigation
+import com.example.gameapp.navigation.GameNavigation
 import com.example.gameapp.ui.theme.GamesAppTheme
 
 

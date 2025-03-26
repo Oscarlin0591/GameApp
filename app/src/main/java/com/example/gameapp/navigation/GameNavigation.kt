@@ -1,4 +1,4 @@
-package com.example.gameapp.navagation
+package com.example.gameapp.navigation
 
 import android.content.Context
 import android.content.Intent
@@ -32,14 +32,13 @@ import androidx.navigation.navArgument
 import com.example.gameapp.model.GameViewModel
 import com.example.gameapp.screens.AboutScreen
 
-import com.example.gameapp.screens.home.HomeScreen
-import com.example.gameapp.screens.details.DetailsScreen
-import com.example.gameapp.screens.home.HomeScreenLandscape
+import com.example.gameapp.screens.HomeScreen
+import com.example.gameapp.screens.DetailsScreen
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppBar(
+fun AppBar( //App bar composable with support for navigate back button, settings, and about section
     currentScreen: String,
     navController: NavController,
     navigateUp: () -> Unit,
@@ -52,6 +51,7 @@ fun AppBar(
     val canNavigateBack = backStackEntry?.destination?.route != AppScreens.HomeScreen.name
     Log.d("canNavigateBack", canNavigateBack.toString());
     TopAppBar(
+        //Built-in android Composable of the top app bar
         title = { Text("Game App") },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.secondary
@@ -70,23 +70,31 @@ fun AppBar(
         actions = { // actions that include SHARE, SETTINGS, and ABOUT.
             if (textToShare.isNotEmpty()) {
                 IconButton(onClick = {
-                    val intent = Intent(Intent.ACTION_SEND).apply {
+                    val intent = Intent(Intent.ACTION_SEND).apply { //intent for sharing the game
                         type = "text/plain"
                         putExtra(Intent.EXTRA_SUBJECT, "Here is a cool game I found!")
                         putExtra(Intent.EXTRA_TEXT, textToShare)
                     }
-                    context.startActivity(Intent.createChooser(intent, "Share Option"))
+                    context.startActivity(
+                        Intent.createChooser(
+                            intent,
+                            "Share Option"
+                        )
+                    ) //starts activity of the share screen
                 }) {
-                    Icon(imageVector = Icons.Default.Share, contentDescription = "Share items")
+                    Icon(
+                        imageVector = Icons.Default.Share,
+                        contentDescription = "Share items"
+                    ) //share icon
                 }
             }
             IconButton( // icon and clickable to direct user to the color picker screen
-                onClick = {gameViewModel.updateColor(Color.Blue)}
+                onClick = { gameViewModel.updateColor(Color.Blue) }
             ) {
                 Icon(Icons.Default.Settings, contentDescription = null)
             }
             IconButton( // icon and clickable to direct user to the about screen
-                onClick = {navController.navigate(route = AppScreens.AboutScreen.name)}
+                onClick = { navController.navigate(route = AppScreens.AboutScreen.name) }
             ) {
                 Icon(Icons.Default.Info, contentDescription = null)
             }
@@ -96,24 +104,25 @@ fun AppBar(
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun GameNavigation() {
+fun GameNavigation() { //navigation composable to help with navigation between screens
     val navController = rememberNavController()
     val gameViewModel: GameViewModel = viewModel()
     gameViewModel.getData() // creating an instance of the viewModel
 
-    NavHost(
+    NavHost( //NavHost for the app navigation
         navController = navController,
         startDestination = AppScreens.HomeScreen.name,
         modifier = Modifier.fillMaxSize()
 
     ) {
-        composable(AppScreens.HomeScreen.name) {
+        composable(AppScreens.HomeScreen.name) { //creates and directs to HomeScreen
             HomeScreen(
                 navController = navController,
                 gameViewModel
             ) // passes the viewModel to the HomeScreen
         }
-        composable(AppScreens.DetailScreen.name + "/{title}",
+        composable(
+            AppScreens.DetailScreen.name + "/{title}", //creates and directs to DetailScreen with the chosen game's info
             arguments = listOf(navArgument(name = "title") { type = NavType.StringType })
         ) { backStackEntry ->
             DetailsScreen(
@@ -122,7 +131,7 @@ fun GameNavigation() {
             )
         }
 
-        composable(AppScreens.AboutScreen.name) {
+        composable(AppScreens.AboutScreen.name) { //creates and directs to AboutScreen
             AboutScreen(
                 navController = navController,
                 gameViewModel

@@ -20,20 +20,16 @@ class GameViewModel : ViewModel(){
     // create an instance of the api
     private val gameApi = ApiInterface.create()
 
-    //LiveData is lifecycle aware, meaning it only updates observers are in an active lifecycle state such as STARTED or RESUMED
-    // below two lines is the structure to set up the livedata observable
-    val _gameResult = MutableLiveData<Response<ArrayList<Games>>>()
-    val gameResult : LiveData<Response<ArrayList<Games>>> = _gameResult
+    val _gameResult = MutableLiveData<Response<ArrayList<Games>>>() //Liva data of the retrieved games array list
+    val gameResult : LiveData<Response<ArrayList<Games>>> = _gameResult //exposed live data of the games array list
 
-    var backgroundColor by mutableStateOf(Color.Green)
+    var backgroundColor by mutableStateOf(Color.Green) //initial background color
 
-    fun getData(){
-    //coroutine: instance of suspendable computation. Conceptually similar to a thread (takes a block of code to run that works concuurently with the rest of the code).
-    //however, a coroutine is not boud to any particular thread. It may suspend its execution in one thread and resume in another one.
-        viewModelScope.launch {
+    fun getData(){ // function to get games from the API interface
+        viewModelScope.launch { //launches coroutine to retrieve data
             try {
-                val response = gameApi.getGames()
-                if(response.isSuccessful) {
+                val response = gameApi.getGames() //getGames() method call
+                if(response.isSuccessful) { //blocking operation
                     Log.d("API response", response.body().toString())
                     _gameResult.value = response
                 } else {
@@ -45,7 +41,7 @@ class GameViewModel : ViewModel(){
         }
     }
 
-    fun updateColor(color: Color){
+    fun updateColor(color: Color){ //update color method for background
         backgroundColor = color
     }
 }

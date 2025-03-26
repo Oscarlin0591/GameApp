@@ -12,17 +12,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.gameapp.model.GameViewModel
-import com.example.gameapp.navagation.AppBar
-import com.example.gameapp.navagation.AppScreens
+import com.example.gameapp.navigation.AppBar
+import com.example.gameapp.navigation.AppScreens
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @ExperimentalAnimationApi
@@ -32,21 +27,21 @@ fun AboutScreen(
     gameViewModel: GameViewModel
 ) {
     Scaffold(
-        topBar = {
-                AppBar(
-                    currentScreen = AppScreens.AboutScreen.name,
-                    navController = navController,
-                    navigateUp = { navController.navigateUp() },
-                    textToShare = "",
-                    context = LocalContext.current,
-                    gameViewModel = gameViewModel,
-                    modifier = Modifier
-                )
+        topBar = { //top app bar
+            AppBar(
+                currentScreen = AppScreens.AboutScreen.name,
+                navController = navController,
+                navigateUp = { navController.navigateUp() },
+                textToShare = "",
+                context = LocalContext.current,
+                gameViewModel = gameViewModel,
+                modifier = Modifier
+            )
         },
         containerColor = gameViewModel.backgroundColor
     ) {
 
-        Column(
+        Column( //page body with text and info
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top,
             modifier = Modifier.padding(top = 84.dp)
@@ -54,7 +49,8 @@ fun AboutScreen(
             Text(
                 "This app uses the FreeToGame api which includes over 400" +
                         " free-to-play games. For the HomeScreen, we used the endpoint of /games" +
-                        " sorted by ", modifier = Modifier.padding(6.dp))
+                        " sorted by ", modifier = Modifier.padding(6.dp)
+            )
 
             HorizontalDivider(modifier = Modifier.padding(3.dp))
             Text(
