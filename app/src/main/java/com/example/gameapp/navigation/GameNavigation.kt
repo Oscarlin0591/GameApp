@@ -1,4 +1,4 @@
-package com.example.gameapp.navigation
+package com.example.gameapp.navagation
 
 import android.content.Context
 import android.content.Intent
@@ -31,6 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.gameapp.model.GameViewModel
 import com.example.gameapp.screens.AboutScreen
+import com.example.gameapp.screens.ColorScreen
 
 import com.example.gameapp.screens.HomeScreen
 import com.example.gameapp.screens.DetailsScreen
@@ -89,12 +90,12 @@ fun AppBar( //App bar composable with support for navigate back button, settings
                 }
             }
             IconButton( // icon and clickable to direct user to the color picker screen
-                onClick = { gameViewModel.updateColor(Color.Blue) }
+                onClick = {navController.navigate(route = AppScreens.ColorScreen.name)}
             ) {
                 Icon(Icons.Default.Settings, contentDescription = null)
             }
             IconButton( // icon and clickable to direct user to the about screen
-                onClick = { navController.navigate(route = AppScreens.AboutScreen.name) }
+                onClick = {navController.navigate(route = AppScreens.AboutScreen.name)}
             ) {
                 Icon(Icons.Default.Info, contentDescription = null)
             }
@@ -131,7 +132,7 @@ fun GameNavigation() { //navigation composable to help with navigation between s
             )
         }
 
-        composable(AppScreens.AboutScreen.name) { //creates and directs to AboutScreen
+        composable(AppScreens.AboutScreen.name) {
             AboutScreen(
                 navController = navController,
                 gameViewModel

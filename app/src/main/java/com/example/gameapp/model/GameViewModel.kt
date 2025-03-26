@@ -23,7 +23,7 @@ class GameViewModel : ViewModel(){
     val _gameResult = MutableLiveData<Response<ArrayList<Games>>>() //Liva data of the retrieved games array list
     val gameResult : LiveData<Response<ArrayList<Games>>> = _gameResult //exposed live data of the games array list
 
-    var backgroundColor by mutableStateOf(Color.Green) //initial background color
+    var backgroundColor by mutableStateOf(Color.White) //initial background color
 
     fun getData(){ // function to get games from the API interface
         viewModelScope.launch { //launches coroutine to retrieve data
