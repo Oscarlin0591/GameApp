@@ -45,13 +45,14 @@ fun ColorScreen(
         containerColor = gameViewModel.backgroundColor
     ) {
 
-        Column(
+        Column( // column of buttons that change the background color of each screen
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .padding(top = 100.dp)
                 .fillMaxWidth()
         ) {
             Text("Change the background color by tapping a color:", style = MaterialTheme.typography.titleLarge)
+            //white button
             Card(onClick = {gameViewModel.updateColor(color = Color.White)},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -67,7 +68,7 @@ fun ColorScreen(
                 }
                 Text(text = "White", modifier = Modifier.align(Alignment.CenterHorizontally))
             }
-
+            //black button
             Card(onClick = {gameViewModel.updateColor(color = Color.Black)},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -83,7 +84,7 @@ fun ColorScreen(
                 }
                 Text(text = "Black", modifier = Modifier.align(Alignment.CenterHorizontally))
             }
-
+            //gray button
             Card(onClick = {gameViewModel.updateColor(color = Color.Gray)},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -99,7 +100,7 @@ fun ColorScreen(
                 }
                 Text(text = "Gray", modifier = Modifier.align(Alignment.CenterHorizontally))
             }
-
+            //green button
             Card(onClick = {gameViewModel.updateColor(color = Color.Green)},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -115,7 +116,7 @@ fun ColorScreen(
                 }
                 Text(text = "Green", modifier = Modifier.align(Alignment.CenterHorizontally))
             }
-
+            //magenta button
             Card(onClick = {gameViewModel.updateColor(color = Color.Magenta)},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -131,7 +132,7 @@ fun ColorScreen(
                 }
                 Text(text = "Magenta", modifier = Modifier.align(Alignment.CenterHorizontally))
             }
-
+            //yellow button
             Card(onClick = {gameViewModel.updateColor(color = Color.Yellow)},
                 modifier = Modifier
                     .fillMaxWidth()
