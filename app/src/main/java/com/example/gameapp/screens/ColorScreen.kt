@@ -3,18 +3,12 @@ package com.example.gameapp.screens
 import android.annotation.SuppressLint
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -22,10 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.gameapp.model.GameViewModel
@@ -54,13 +45,14 @@ fun ColorScreen(
         containerColor = gameViewModel.backgroundColor
     ) {
 
-        Column(
+        Column( // column of buttons that change the background color of each screen
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .padding(top = 100.dp)
                 .fillMaxWidth()
         ) {
             Text("Change the background color by tapping a color:", style = MaterialTheme.typography.titleLarge)
+            //white button
             Card(onClick = {gameViewModel.updateColor(color = Color.White)},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -76,7 +68,7 @@ fun ColorScreen(
                 }
                 Text(text = "White", modifier = Modifier.align(Alignment.CenterHorizontally))
             }
-
+            //black button
             Card(onClick = {gameViewModel.updateColor(color = Color.Black)},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -92,7 +84,7 @@ fun ColorScreen(
                 }
                 Text(text = "Black", modifier = Modifier.align(Alignment.CenterHorizontally))
             }
-
+            //gray button
             Card(onClick = {gameViewModel.updateColor(color = Color.Gray)},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -108,7 +100,7 @@ fun ColorScreen(
                 }
                 Text(text = "Gray", modifier = Modifier.align(Alignment.CenterHorizontally))
             }
-
+            //green button
             Card(onClick = {gameViewModel.updateColor(color = Color.Green)},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -124,7 +116,7 @@ fun ColorScreen(
                 }
                 Text(text = "Green", modifier = Modifier.align(Alignment.CenterHorizontally))
             }
-
+            //magenta button
             Card(onClick = {gameViewModel.updateColor(color = Color.Magenta)},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -140,7 +132,7 @@ fun ColorScreen(
                 }
                 Text(text = "Magenta", modifier = Modifier.align(Alignment.CenterHorizontally))
             }
-
+            //yellow button
             Card(onClick = {gameViewModel.updateColor(color = Color.Yellow)},
                 modifier = Modifier
                     .fillMaxWidth()
